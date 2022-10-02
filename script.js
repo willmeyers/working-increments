@@ -2,6 +2,26 @@
 
 const STORAGE_KEY = "working-increments:storage"
 
+const DEFAULT_THEME = {
+  "--font-family": `system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif`,
+  "--background-color": `#FFFFFF`,
+  "--foreground-color": `#FFFFFF`,
+  "--font-color": `#000000`,
+  "--border-color": `#AAAAAA`,
+  "--box-shadow-color": `rgba(0, 0, 0 0.1)`,
+  "--tick-background-color": `#000000`
+}
+
+const DARK_THEME = {
+  "--font-family": `system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif`,
+  "--background-color": `#1E2124`,
+  "--foreground-color": `#282B30`,
+  "--font-color": `#424549`,
+  "--border-color": `#36393E`,
+  "--box-shadow-color": `rgba(0, 0, 0 0.1)`,
+  "--tick-background-color": `#7289DA`
+}
+
 class App {
   constructor() {
     this.storage = null;
@@ -25,6 +45,7 @@ class App {
       this.storage = { incrementers: [] };
     }
 
+    this.applyTheme();
     this.appendIncrementerElements();
     this.setupErrorListener();
   }
@@ -84,7 +105,6 @@ class App {
       this.dispatchError("An incrementer with that name doesn't exist.");
       return;
     }
-    event.target.querySelector("input[name=description]").value = "";
     this.storage.incrementers[incrementerIdx].ticks.push({ createdAt: new Date(), description: tickDescription });
     this.saveStorage(true);
   }
@@ -152,7 +172,7 @@ class App {
 
           const tickDeleteHint = document.createElement("div");
           tickDeleteHint.classList.add("delete-hint")
-          tickDeleteHint.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -6 20 20" width="24" fill="#aaaaaa"><path d="M7.314 5.9l3.535-3.536A1 1 0 1 0 9.435.95L5.899 4.485 2.364.95A1 1 0 1 0 .95 2.364l3.535 3.535L.95 9.435a1 1 0 1 0 1.414 1.414l3.535-3.535 3.536 3.535a1 1 0 1 0 1.414-1.414L7.314 5.899z"></path></svg>`
+          tickDeleteHint.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -6 24 24" width="24" fill="var(--font-color)"><path d="M7.314 5.9l3.535-3.536A1 1 0 1 0 9.435.95L5.899 4.485 2.364.95A1 1 0 1 0 .95 2.364l3.535 3.535L.95 9.435a1 1 0 1 0 1.414 1.414l3.535-3.535 3.536 3.535a1 1 0 1 0 1.414-1.414L7.314 5.899z"></path></svg>`
           tickDeleteHint.onclick = (event) => {
             event.stopPropagation();
             this.deleteIncrementerTick(inc.name, tick.createdAt, tick.description);
@@ -210,6 +230,20 @@ class App {
 
   closeDialog(dialogId) {
     document.getElementById(dialogId).toggleAttribute("open");
+  }
+
+  applyTheme() {
+    if (this.storage.theme) {
+      Object.keys(this.storage.theme).map((cssVar) => {
+        document.documentElement.style.setProperty(cssVar, this.storage.theme[cssVar]);
+      });
+    }
+  }
+
+  toggleTheme(themeId) {
+    if (themeId === "dark") { this.storage.theme = DARK_THEME; }
+    else { this.storage.theme = DEFAULT_THEME; }
+    this.saveStorage(true);
   }
 }
 

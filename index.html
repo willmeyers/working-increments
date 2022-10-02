@@ -8,10 +8,16 @@
 </head>
 
 <body>
+    <div class="theme-select-container">
+        <div id="toggle-default-theme" role="button" onclick="app.toggleTheme('default')"></div>
+        <div id="toggle-dark-theme" role="button" onclick="app.toggleTheme('dark')"></div>
+    </div>
     <nav class="nav">
         <h1>working increments</h1>
         <div>
-            <button onclick="app.CreateIncrementerDialog.toggleAttribute('open')">Create Incrementer</button>
+        </div>
+        <div>
+            <button onclick="app.CreateIncrementerDialog.toggleAttribute('open')">New Incrementer</button>
         </div>
     </nav>
     <dialog id="create-incrementer-dialog">
@@ -31,7 +37,7 @@
         <form onsubmit="app.createIncrementer(event)" class="dialog-form">
             <label for="name">Incrementer Name</label>
             <input required id="name" type="text" name="name" placeholder="Problem Sets, Running, Diet..."
-                maxlength="48" />
+                maxlength="48" autofocus />
             <div>
                 <button type="submit">Create Incrementer</button>
             </div>
@@ -54,7 +60,7 @@
         <form onsubmit="app.updateIncrementer(event)" class="dialog-form">
             <label for="name">Incrementer Name</label>
             <input required id="name" type="text" name="name" placeholder="Problem Sets, Running, Diet..."
-                maxlength="48" />
+                maxlength="48" autofocus />
             <div>
                 <button id="delete-incrementer-button" type="button">Delete</button>
             </div>
@@ -80,7 +86,7 @@
         <form onsubmit="app.createIncrementerTick(event)" class="dialog-form">
             <label for="description">Tick Description</label>
             <input required id="description" type="text" name="description"
-                placeholder="What did you do that deserves a tick?" maxlength="48" />
+                placeholder="What did you do that deserves a tick?" maxlength="48" autofocus />
             <div>
                 <button type="submit">Create Tick</button>
             </div>
