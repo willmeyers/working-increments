@@ -1,0 +1,105 @@
+body {
+    margin: auto;
+    max-width: 600px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+
+dialog {
+    min-width: 600px;
+    padding: 18px;
+    z-index: 9;
+    background-color: white;
+    border: 1px dashed #aaa;
+    border-radius: 4px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+input[type="text"] {
+    padding: 8px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dialog-nav {
+    padding: 0 0 18px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dialog-nav h2 {
+    margin: 0;
+}
+
+.dialog-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.increment-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticks {
+    display: flex;
+    gap: 8px;
+}
+
+.tick {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    border: 1px dashed #aaa;
+    border-radius: 4px;
+}
+
+.tick-tooltip {
+    padding: 8px;
+    display: none;
+    position: absolute;
+    width: 280px;
+    z-index: 9;
+    background-color: white;
+    border: 1px dashed #aaa;
+    border-radius: 4px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+.delete-hint {
+    display: none;
+}
+
+.tick-tooltip>* {
+    font-size: 10px;
+}
+
+.tick:hover .tick-tooltip {
+    display: block;
+}
+
+.tick:hover .delete-hint {
+    display: block;
+}
