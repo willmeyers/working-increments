@@ -2,6 +2,8 @@
 
 Working Increments is stupid simple habit tracking software.
 
+Check out the [demo](https://willmeyers.github.io/working-increments/)!
+
 ![Screenshot](/screenshots/working-increments-screenshot.png)
 
 ## Installing
